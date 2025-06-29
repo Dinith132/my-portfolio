@@ -66,7 +66,7 @@ const Hero = () => {
             className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-xl"
           >
             <img
-              src="https://media.licdn.com/dms/image/v2/D5603AQHslzHnEI7YyA/profile-displayphoto-shrink_200_200/B56ZVrfNWxGUAc-/0/1741265100143?e=1756944000&v=beta&t=c3rcZ9m5MPjHFwsAJ6X54T0kA19tTY646cV7TNZ9UaU"
+              src="https://dinith132.github.io/my-portfolio/img/img1.jpg"
               alt="Dinith Priyankara"
               className="w-full h-full object-cover"
             />
@@ -151,7 +151,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="/M.M.D.P.Wijedasa-CV.pdf"
+              href="https://dinith132.github.io/my-portfolio/M.M.D.P.Wijedasa-CV.pdf"
               download
               className="flex items-center gap-2 px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:border-gray-400 dark:hover:border-gray-500 transition-colors"
             >

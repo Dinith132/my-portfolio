@@ -54,7 +54,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <motion.button
                 key={item.name}
@@ -73,9 +73,9 @@ const Navbar = () => {
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
-          </div>
+          </div> */}
 
-          {/* Mobile Navigation Button
+          {/* Mobile Navigation Button */}
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -91,7 +91,7 @@ const Navbar = () => {
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div> */}
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}

@@ -54,7 +54,7 @@ const About = () => {
             <div className="relative w-full max-w-md mx-auto">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/img/img1.jpg"
+                  src="https://dinith132.github.io/my-portfolio/img/img1.jpg"
                   alt="Dinith Priyankara"
                   className="w-full h-full object-cover"
                 />
