@@ -75,7 +75,7 @@ const Navbar = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Navigation Button */}
+          {/* Mobile Navigation Button
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -91,7 +91,7 @@ const Navbar = () => {
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Navigation Menu */}
