@@ -157,7 +157,7 @@ const Projects = () => {
                       <Github size={16} />
                       Code
                     </motion.a>
-                    <motion.a
+                    {/* <motion.a
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       href={project.demo}
@@ -165,7 +165,7 @@ const Projects = () => {
                     >
                       <ExternalLink size={16} />
                       Demo
-                    </motion.a>
+                    </motion.a> */}
                   </div>
                 </div>
               </motion.div>

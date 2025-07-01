@@ -19,11 +19,11 @@ const About = () => {
       title: "Embedded Systems",
       description: "Creating IoT solutions and embedded applications"
     },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "Open Source",
-      description: "Contributing to the developer community through collaboration"
-    }
+    // {
+    //   icon: <Users className="w-6 h-6" />,
+    //   title: "Open Source",
+    //   description: "Contributing to the developer community through collaboration"
+    // }
   ];
 
   return (

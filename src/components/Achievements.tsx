@@ -18,13 +18,13 @@ const Achievements = () => {
       type: "Hackathon",
       icon: <Trophy className="w-6 h-6" />
     },
-    {
-      title: "IESL Volunteering Projects",
-      description: "Contributed to technology exhibitions and community outreach programs promoting STEM education",
-      date: "2024",
-      type: "Volunteer",
-      icon: <Users className="w-6 h-6" />
-    }
+    // {
+    //   title: "IESL Volunteering Projects",
+    //   description: "Contributed to technology exhibitions and community outreach programs promoting STEM education",
+    //   date: "2024",
+    //   type: "Volunteer",
+    //   icon: <Users className="w-6 h-6" />
+    // }
   ];
 
   return (
@@ -83,7 +83,7 @@ const Achievements = () => {
         </div>
 
         {/* Stats Section */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -102,7 +102,7 @@ const Achievements = () => {
             <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">5+</div>
             <div className="text-gray-700 dark:text-gray-300 font-medium">Technologies Mastered</div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

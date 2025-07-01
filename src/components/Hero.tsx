@@ -7,8 +7,7 @@ const Hero = () => {
   const phrases = [
     "Full-Stack Web Apps",
     "AI/ML Projects with Explainability",
-    "Bluetooth & Embedded Systems",
-    "Open-Source Collaborations"
+    "Embedded Systems",
   ];
 
   useEffect(() => {

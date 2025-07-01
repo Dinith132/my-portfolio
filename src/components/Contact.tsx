@@ -126,7 +126,7 @@ const Contact = () => {
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -208,7 +208,7 @@ const Contact = () => {
                 Send Message
               </motion.button>
             </form>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Footer */}

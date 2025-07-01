@@ -5,19 +5,19 @@ import { GraduationCap, Award, ExternalLink } from 'lucide-react';
 const Education = () => {
   const certifications = [
     {
-      title: "Complete Java Development Bootcamp",
+      title: " Javascript Practicals Crash Course",
       provider: "Udemy",
       date: "2024",
       link: "https://www.udemy.com/certificate/UC-8a3dcbf8-5434-4f10-849f-fb57b3938d50/"
     },
     {
-      title: "Python for Data Science and Machine Learning",
+      title: "Professional Certificate in SQL and SQL for Data Analysis",
       provider: "Udemy", 
       date: "2024",
       link: "https://ude.my/UC-5a906552-72ea-4520-9cea-1c9a1a6e1e2e/"
     },
     {
-      title: "Advanced React Development",
+      title: "Linux Terminal for beginners",
       provider: "Udemy",
       date: "2024", 
       link: "https://www.udemy.com/certificate/UC-da0a01aa-6300-4f0b-8724-895a287b6cde/"
