@@ -34,3 +34,56 @@ export interface FeaturedProject {
   status: string;
   priority: number;
 }
+
+export interface ResearchProfile {
+  title: string;
+  status: string;
+  researchQuestion: string;
+  motivation: string;
+  methodology: string[];
+  modelArchitecture: string[];
+  xaiTechniques: string[];
+  visualResults: string[];
+  thesisLink: string;
+  teamMembers: string[];
+  supervisor: string;
+}
+
+export interface ExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  location: string;
+  dates: string;
+  summary: string;
+  workAreas: string[];
+  technologies: string[];
+  verificationNote: string;
+}
+
+export type SkillLevel =
+  | 'Strong working experience'
+  | 'Working knowledge'
+  | 'Academic or project exposure';
+
+export interface SkillGroup {
+  id: string;
+  title: string;
+  purpose: string;
+  level: SkillLevel;
+  skills: string[];
+}
+
+export interface EducationItem {
+  area: string;
+  institution: string;
+  location: string;
+  details: string[];
+}
+
+export interface JourneyItem {
+  id: string;
+  title: string;
+  description: string;
+  status: string;
+}

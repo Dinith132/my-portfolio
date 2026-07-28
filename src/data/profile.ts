@@ -1,5 +1,13 @@
 import type { ProfileLink } from '../types/portfolio';
 
+const assetPath = (path: string) => {
+  const base = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+
+  return `${base}${path.replace(/^\//, '')}`;
+};
+
 export const profile = {
   name: 'Dinith Priyankara',
   role: 'Computer Engineer',
@@ -10,7 +18,7 @@ export const profile = {
     'Computer Engineer with experience in backend development, embedded systems, automation, control systems, and applied AI.',
   focusAreas: ['Embedded Systems', 'Backend Engineering', 'Explainable AI'],
   image: {
-    src: '/img/img1.jpg',
+    src: assetPath('img/img1.jpg'),
     alt: 'Portrait of Dinith Priyankara',
   },
 };

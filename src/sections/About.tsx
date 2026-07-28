@@ -1,4 +1,6 @@
+import { motion, useReducedMotion } from 'framer-motion';
 import { Cpu, Layers3, Network, Workflow } from 'lucide-react';
+import { Reveal } from '../ui/Reveal';
 
 const systemNotes = [
   {
@@ -24,10 +26,12 @@ const systemNotes = [
 ];
 
 export function About() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="about" className="bg-[#f4f1ea] py-24 text-[#101614] sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <Reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.22em] text-emerald-800">
               About
@@ -56,20 +60,35 @@ export function About() {
               software-development experience.
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          initial={shouldReduceMotion ? false : 'hidden'}
+          whileInView={shouldReduceMotion ? undefined : 'visible'}
+          viewport={{ once: true, margin: '-120px' }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.09 } },
+          }}
+          className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {systemNotes.map(({ label, text, icon: Icon }) => (
-            <article
+            <motion.article
               key={label}
+              variants={{
+                hidden: { opacity: 0, y: 34, rotate: -1 },
+                visible: { opacity: 1, y: 0, rotate: 0 },
+              }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={shouldReduceMotion ? undefined : { y: -8 }}
               className="border border-[#101614]/10 bg-white p-6 shadow-sm"
             >
               <Icon className="h-6 w-6 text-emerald-700" aria-hidden="true" />
               <h3 className="mt-5 text-lg font-black">{label}</h3>
               <p className="mt-3 text-sm leading-6 text-stone-600">{text}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

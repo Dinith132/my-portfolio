@@ -1,18 +1,30 @@
-import { Github, Linkedin, Menu } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Github, Linkedin } from 'lucide-react';
 import { profile, profileLinks } from '../data/profile';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
+  { label: 'Research', href: '#research' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 const github = profileLinks.find((link) => link.name === 'github');
 const linkedin = profileLinks.find((link) => link.name === 'linkedin');
 
 export function Navigation() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08100f]/85 backdrop-blur-xl">
+    <motion.header
+      initial={shouldReduceMotion ? false : { y: -72, opacity: 0 }}
+      animate={shouldReduceMotion ? undefined : { y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08100f]/85 backdrop-blur-xl"
+    >
       <nav
         aria-label="Main navigation"
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8"
@@ -28,12 +40,12 @@ export function Navigation() {
           <span className="hidden tracking-wide sm:inline">{profile.name}</span>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
+              className="text-xs font-bold uppercase tracking-[0.13em] text-slate-300 transition-colors hover:text-white"
             >
               {item.label}
             </a>
@@ -63,16 +75,8 @@ export function Navigation() {
               <Linkedin size={18} aria-hidden="true" />
             </a>
           )}
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center border border-white/10 text-slate-300 md:hidden"
-            aria-label="Navigation menu planned for the next responsive stage"
-            disabled
-          >
-            <Menu size={18} aria-hidden="true" />
-          </button>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 }
