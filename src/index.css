@@ -29,6 +29,16 @@ body::selection {
   color: #06110f;
 }
 
+html[data-theme='light'] body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html[data-theme='dark'] body {
+  background: #08100f;
+  color: #f8fafc;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -109,6 +119,42 @@ button:disabled {
 
 .transition-ribbon {
   animation: ribbon-slide 5.5s ease-in-out infinite;
+}
+
+.theme-light [class*='bg-[#08100f]'],
+.theme-light [class*='bg-[#030706]'] {
+  background-color: #f8fafc !important;
+}
+
+.theme-light [class*='bg-[#06110f]'],
+.theme-light [class*='bg-[#0c1715]'],
+.theme-light [class*='bg-[#0d1815]'],
+.theme-light [class*='bg-[#111a18]'] {
+  background-color: rgb(255 255 255 / 0.82) !important;
+}
+
+.theme-light .text-white,
+.theme-light [class*='text-slate-100'],
+.theme-light [class*='text-slate-200'] {
+  color: #0f172a !important;
+}
+
+.theme-light [class*='text-slate-300'],
+.theme-light [class*='text-slate-400'] {
+  color: #475569 !important;
+}
+
+.theme-light [class*='text-slate-500'] {
+  color: #64748b !important;
+}
+
+.theme-light [class*='border-white'] {
+  border-color: rgb(15 23 42 / 0.12) !important;
+}
+
+.theme-light [class*='bg-white/'],
+.theme-light [class*='bg-white\\['] {
+  background-color: rgb(255 255 255 / 0.62) !important;
 }
 
 @keyframes grid-drift {
