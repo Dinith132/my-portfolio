@@ -180,8 +180,8 @@ export function Hero() {
         </div>
 
         <motion.aside
-          initial={shouldReduceMotion ? false : { opacity: 0, x: 70, rotate: 1.5 }}
-          animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0, rotate: 0 }}
+          initial={shouldReduceMotion ? false : { x: 70, rotate: 1.5 }}
+          animate={shouldReduceMotion ? undefined : { x: 0, rotate: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
           style={shouldReduceMotion ? undefined : { y: portraitY }}
           className="grid gap-5 lg:justify-self-end"

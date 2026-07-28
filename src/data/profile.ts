@@ -18,7 +18,7 @@ export const profile = {
     'Computer Engineer with experience in backend development, embedded systems, automation, control systems, and applied AI.',
   focusAreas: ['Embedded Systems', 'Backend Engineering', 'Explainable AI'],
   image: {
-    src: assetPath('img/img1.jpg'),
+    src: assetPath('img/profile.jpg'),
     alt: 'Portrait of Dinith Priyankara',
   },
 };
