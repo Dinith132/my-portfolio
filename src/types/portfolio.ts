@@ -15,7 +15,7 @@ export interface ProjectImage {
   caption?: string;
   isPlaceholder?: boolean;
 }
-
+// 
 export interface FeaturedProject {
   id: string;
   title: string;
