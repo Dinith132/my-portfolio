@@ -50,6 +50,184 @@ button:disabled {
   opacity: 0.45;
 }
 
+.motion-grid {
+  animation: grid-drift 18s linear infinite;
+}
+
+.scan-beam {
+  animation: scan-beam 4.5s ease-in-out infinite;
+}
+
+.portrait-halo {
+  animation: portrait-halo 3s ease-in-out infinite;
+}
+
+.portrait-float {
+  animation: portrait-float 6s ease-in-out infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.8s ease-out infinite;
+}
+
+.signal-bar {
+  animation: signal-bar 1.55s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+.signal-bar:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.signal-bar:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+.signal-bar:nth-child(4) {
+  animation-delay: 0.42s;
+}
+
+.signal-bar:nth-child(5) {
+  animation-delay: 0.56s;
+}
+
+.ticker-track {
+  animation: ticker-run 18s linear infinite;
+}
+
+.spark-dot {
+  animation: spark-dot 2.4s ease-in-out infinite;
+}
+
+.spark-dot:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.spark-dot:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.transition-ribbon {
+  animation: ribbon-slide 5.5s ease-in-out infinite;
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 140px 140px, 140px 140px;
+  }
+}
+
+@keyframes scan-beam {
+  0%,
+  100% {
+    transform: translateY(-18%);
+    opacity: 0.16;
+  }
+
+  45%,
+  55% {
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: translateY(118%);
+  }
+}
+
+@keyframes portrait-halo {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgb(110 231 183 / 0.18),
+      0 0 48px rgb(45 212 191 / 0.12);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 1px rgb(251 191 36 / 0.32),
+      0 0 72px rgb(45 212 191 / 0.26);
+  }
+}
+
+@keyframes portrait-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(-0.45deg);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.86);
+    opacity: 0.55;
+  }
+
+  70% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1.16);
+    opacity: 0;
+  }
+}
+
+@keyframes signal-bar {
+  0%,
+  100% {
+    transform: scaleY(0.34);
+    opacity: 0.45;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ticker-run {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spark-dot {
+  0%,
+  100% {
+    transform: translateX(0) scale(0.8);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translateX(22px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes ribbon-slide {
+  0%,
+  100% {
+    transform: translateX(-12%);
+  }
+
+  50% {
+    transform: translateX(12%);
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

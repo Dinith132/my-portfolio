@@ -22,6 +22,15 @@ const lineVariants = {
   visible: { y: '0%', rotate: 0 },
 };
 
+const tickerItems = [
+  'Embedded Systems',
+  'Backend APIs',
+  'AI Workflows',
+  'Automation',
+  'Control Systems',
+  'Robotics',
+];
+
 export function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -37,7 +46,11 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(45,212,191,0.18),transparent_34%),linear-gradient(245deg,rgba(251,191,36,0.14),transparent_28%)]" />
         <motion.div
           style={shouldReduceMotion ? undefined : { y: gridY }}
-          className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:140px_140px]"
+          className="motion-grid absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:140px_140px]"
+        />
+        <div
+          aria-hidden="true"
+          className="scan-beam absolute -left-12 right-0 top-0 h-32 rotate-[-6deg] bg-gradient-to-b from-transparent via-emerald-200/20 to-transparent blur-sm"
         />
         <motion.div
           initial={shouldReduceMotion ? false : { scaleX: 0 }}
@@ -57,6 +70,26 @@ export function Hero() {
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute bottom-1/4 left-1/2 h-48 w-[42rem] -translate-x-1/2 bg-emerald-300/10 blur-3xl"
         />
+        <div
+          aria-hidden="true"
+          className="transition-ribbon absolute bottom-10 left-0 h-px w-full bg-gradient-to-r from-transparent via-amber-200/50 to-transparent"
+        />
+      </div>
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 overflow-hidden border-y border-white/10 bg-[#06110f]/85 py-3 backdrop-blur"
+        aria-hidden="true"
+      >
+        <div className="ticker-track flex w-max items-center gap-4 whitespace-nowrap">
+          {[...tickerItems, ...tickerItems, ...tickerItems].map((item, index) => (
+            <span
+              key={`hero-rail-${item}-${index}`}
+              className="inline-flex items-center gap-4 text-sm font-black uppercase tracking-[0.18em] text-slate-200"
+            >
+              <span className="h-2 w-2 bg-emerald-300" />
+              {item}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-12 px-5 py-10 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-14">
@@ -71,9 +104,29 @@ export function Hero() {
             {profile.role}
           </motion.p>
 
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.42 }}
+            className="mb-6 max-w-xl overflow-hidden border-y border-white/10 bg-white/[0.035] py-2"
+            aria-hidden="true"
+          >
+            <div className="ticker-track flex w-max items-center gap-4 whitespace-nowrap">
+              {[...tickerItems, ...tickerItems].map((item, index) => (
+                <span
+                  key={`intro-rail-${item}-${index}`}
+                  className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-[0.18em] text-slate-200"
+                >
+                  <span className="h-2 w-2 bg-emerald-300" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
           <h1
             aria-label={profile.headline}
-            className="max-w-5xl text-5xl font-black leading-[0.95] text-white sm:text-7xl lg:text-8xl"
+            className="max-w-5xl text-5xl font-black leading-[0.95] text-white sm:text-7xl lg:text-7xl 2xl:text-8xl"
           >
             {headingLines.map((line, index) => (
               <span key={line} className="block overflow-hidden pb-1">
@@ -190,16 +243,22 @@ export function Hero() {
           <motion.div
             whileHover={shouldReduceMotion ? undefined : { y: -10, rotate: -0.6 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-md border border-white/12 bg-white/[0.04] p-4 shadow-2xl shadow-black/30"
+            className="portrait-halo relative max-w-md border border-white/12 bg-white/[0.04] p-4 shadow-2xl shadow-black/30"
           >
-            <motion.img
-              src={profile.image.src}
-              alt={profile.image.alt}
-              initial={shouldReduceMotion ? false : { scale: 1.12 }}
-              animate={shouldReduceMotion ? undefined : { scale: 1 }}
-              transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.95 }}
-              className="aspect-[4/5] w-full object-cover"
-            />
+            <div className="pointer-events-none absolute -inset-8 -z-10">
+              <span className="pulse-ring absolute inset-4 border border-emerald-300/35" />
+              <span className="pulse-ring absolute inset-0 border border-amber-200/25 [animation-delay:0.7s]" />
+            </div>
+            <div className="portrait-float overflow-hidden">
+              <motion.img
+                src={profile.image.src}
+                alt={profile.image.alt}
+                initial={shouldReduceMotion ? false : { scale: 1.12 }}
+                animate={shouldReduceMotion ? undefined : { scale: 1 }}
+                transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.95 }}
+                className="aspect-[4/5] w-full object-cover"
+              />
+            </div>
             <div className="absolute -bottom-4 left-4 right-4 border border-emerald-300/30 bg-[#0d1815]/95 p-4 backdrop-blur">
               <div className="flex items-center gap-2 text-sm font-semibold text-slate-200">
                 <MapPin size={16} aria-hidden="true" />
@@ -210,6 +269,18 @@ export function Hero() {
                 development, and automation opportunities.
               </p>
             </div>
+            <div
+              aria-hidden="true"
+              className="absolute right-6 top-6 grid h-16 w-20 grid-cols-5 items-end gap-1 border border-white/15 bg-[#06110f]/75 p-2 backdrop-blur"
+            >
+              {[44, 62, 36, 82, 54].map((height) => (
+                <span
+                  key={height}
+                  className="signal-bar block bg-emerald-300"
+                  style={{ height: `${height}%` }}
+                />
+              ))}
+            </div>
           </motion.div>
 
           <motion.dl
@@ -218,6 +289,15 @@ export function Hero() {
             transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 1.3 }}
             className="grid gap-3 border border-white/10 bg-[#0c1715] p-5 text-sm"
           >
+            <div
+              className="mb-1 flex items-center gap-2 border-b border-white/10 pb-3 text-xs font-black uppercase tracking-[0.18em] text-emerald-200"
+              aria-hidden="true"
+            >
+              <span className="spark-dot h-2 w-2 bg-emerald-300" />
+              <span className="spark-dot h-2 w-2 bg-amber-200" />
+              <span className="spark-dot h-2 w-2 bg-sky-200" />
+              Live build signal
+            </div>
             <div className="flex items-start justify-between gap-4">
               <dt className="text-slate-500">Email</dt>
               <dd className="text-right text-slate-200">{email?.value}</dd>
