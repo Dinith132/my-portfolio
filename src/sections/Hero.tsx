@@ -1,9 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useState } from 'react';
 import { ArrowDown, Github, Linkedin, MapPin } from 'lucide-react';
 import { profile, profileLinks } from '../data/profile';
-import { downloadWithProgress, type DownloadProgress } from '../lib/downloadWithProgress';
-import { loadComputerModel, subscribeComputerProgress } from '../lib/computerModel';
 import type { ThemeMode } from '../types/theme';
 import { ComputerScene } from '../ui/ComputerScene';
 
@@ -37,142 +34,15 @@ const tickerItems = [
 
 type HeroProps = {
   theme: ThemeMode;
+  portraitSrc: string | null;
+  onSceneReady: () => void;
 };
 
-function DownloadMeter({
-  progress,
-  label,
-  isLight,
-  reduced,
-}: {
-  progress: DownloadProgress;
-  label: string;
-  isLight: boolean;
-  reduced: boolean;
-}) {
-  const amount = progress ?? 0;
-  const radius = 28;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (amount / 100) * circumference;
-  const status = progress === null ? label : `${label} ${progress}%`;
-
-  return (
-    <div className="absolute inset-0 grid place-items-center" role="status" aria-live="polite" aria-label={status}>
-      <div className="relative grid h-20 w-20 place-items-center">
-        <svg
-          className={`h-20 w-20 -rotate-90 ${reduced || progress !== null ? '' : 'animate-spin'}`}
-          viewBox="0 0 72 72"
-          aria-hidden="true"
-        >
-          <circle
-            cx="36"
-            cy="36"
-            r={radius}
-            fill="none"
-            strokeWidth="3"
-            className={isLight ? 'stroke-slate-950/15' : 'stroke-white/15'}
-          />
-          <circle
-            cx="36"
-            cy="36"
-            r={radius}
-            fill="none"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={progress === null ? circumference * 0.72 : offset}
-            className={isLight ? 'stroke-amber-600' : 'stroke-emerald-300'}
-          />
-        </svg>
-        <span className={`absolute text-xs font-bold ${isLight ? 'text-slate-800' : 'text-emerald-100'}`}>
-          {progress === null ? '…' : `${progress}%`}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function PortraitPhoto({
-  src,
-  alt,
-  isLight,
-  reduced,
-}: {
-  src: string;
-  alt: string;
-  isLight: boolean;
-  reduced: boolean;
-}) {
-  const [progress, setProgress] = useState<DownloadProgress>(0);
-  const [objectUrl, setObjectUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    let url: string | null = null;
-
-    downloadWithProgress(src, (next) => {
-      if (active) {
-        setProgress(next);
-      }
-    })
-      .then(({ buffer, contentType }) => {
-        if (!active) {
-          return;
-        }
-
-        const blob = new Blob([buffer], { type: contentType || 'image/jpeg' });
-        url = URL.createObjectURL(blob);
-        setObjectUrl(url);
-      })
-      .catch(() => {
-        if (active) {
-          setObjectUrl(src);
-        }
-      });
-
-    return () => {
-      active = false;
-
-      if (url) {
-        URL.revokeObjectURL(url);
-      }
-    };
-  }, [src]);
-
-  return (
-    <div className="portrait-float relative aspect-[4/5] overflow-hidden">
-      {objectUrl ? (
-        <motion.img
-          src={objectUrl}
-          alt={alt}
-          initial={reduced ? false : { opacity: 0 }}
-          animate={reduced ? undefined : { opacity: 1 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="aspect-[4/5] w-full object-cover"
-        />
-      ) : (
-        <DownloadMeter progress={progress} label="Loading portrait" isLight={isLight} reduced={reduced} />
-      )}
-    </div>
-  );
-}
-
-export function Hero({ theme }: HeroProps) {
+export function Hero({ theme, portraitSrc, onSceneReady }: HeroProps) {
   const shouldReduceMotion = useReducedMotion();
   const isLight = theme === 'light';
-  const [sceneReady, setSceneReady] = useState(false);
-  const [sceneProgress, setSceneProgress] = useState<DownloadProgress>(0);
   const { scrollYProgress } = useScroll();
   const portraitY = useTransform(scrollYProgress, [0, 0.28], [0, -70]);
-
-  useEffect(() => {
-    const unsubscribe = subscribeComputerProgress(setSceneProgress);
-    loadComputerModel().catch(() => {
-      setSceneProgress(100);
-    });
-
-    return unsubscribe;
-  }, []);
 
   return (
     <section
@@ -182,7 +52,7 @@ export function Hero({ theme }: HeroProps) {
       }`}
     >
       <div className="absolute inset-0 -z-10">
-        <ComputerScene theme={theme} onSettled={() => setSceneReady(true)} />
+        <ComputerScene theme={theme} onSettled={onSceneReady} />
         <div
           className={`absolute inset-0 ${
             isLight
@@ -228,22 +98,6 @@ export function Hero({ theme }: HeroProps) {
           }`}
         />
       </div>
-      {!sceneReady && (
-        <p
-          className={`pointer-events-none absolute bottom-20 right-6 z-20 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] sm:right-10 ${
-            isLight ? 'text-slate-800' : 'text-emerald-100'
-          }`}
-          role="status"
-          aria-live="polite"
-        >
-          <span
-            className={`h-2 w-2 rounded-full ${shouldReduceMotion ? '' : 'animate-pulse'} ${
-              isLight ? 'bg-amber-600' : 'bg-emerald-300'
-            }`}
-          />
-          {sceneProgress === null ? 'Loading scene' : `Loading scene ${sceneProgress}%`}
-        </p>
-      )}
       <div
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 overflow-hidden border-y py-3 backdrop-blur ${
           isLight
@@ -454,12 +308,15 @@ export function Hero({ theme }: HeroProps) {
               <span className="pulse-ring absolute inset-4 border border-emerald-300/35" />
               <span className="pulse-ring absolute inset-0 border border-amber-200/25 [animation-delay:0.7s]" />
             </div>
-            <PortraitPhoto
-              src={profile.image.src}
-              alt={profile.image.alt}
-              isLight={isLight}
-              reduced={Boolean(shouldReduceMotion)}
-            />
+            <div className="portrait-float relative aspect-[4/5] overflow-hidden">
+              {portraitSrc && (
+                <img
+                  src={portraitSrc}
+                  alt={profile.image.alt}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              )}
+            </div>
             <div
               className={`absolute -bottom-4 left-4 right-4 border p-4 backdrop-blur ${
                 isLight

@@ -1,20 +1,20 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { Group } from 'three';
 import { assetPath } from '../data/profile';
-import { downloadWithProgress, type DownloadProgress } from './downloadWithProgress';
+import { downloadWithProgress, type DownloadSnapshot } from './downloadWithProgress';
 
 const modelUrl = assetPath('models/computer.glb');
 
 let modelPromise: Promise<Group> | null = null;
-let latestProgress: DownloadProgress = 0;
-const listeners = new Set<(progress: DownloadProgress) => void>();
+let latestProgress: DownloadSnapshot = { percent: 0, loaded: 0, total: null };
+const listeners = new Set<(progress: DownloadSnapshot) => void>();
 
-function publish(progress: DownloadProgress) {
+function publish(progress: DownloadSnapshot) {
   latestProgress = progress;
   listeners.forEach((listener) => listener(progress));
 }
 
-export function subscribeComputerProgress(listener: (progress: DownloadProgress) => void) {
+export function subscribeComputerProgress(listener: (progress: DownloadSnapshot) => void) {
   listener(latestProgress);
   listeners.add(listener);
 

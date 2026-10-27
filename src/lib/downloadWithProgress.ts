@@ -1,8 +1,12 @@
-export type DownloadProgress = number | null;
+export type DownloadSnapshot = {
+  percent: number | null;
+  loaded: number;
+  total: number | null;
+};
 
 export function downloadWithProgress(
   url: string,
-  onProgress: (progress: DownloadProgress) => void,
+  onProgress: (snapshot: DownloadSnapshot) => void,
 ): Promise<{ buffer: ArrayBuffer; contentType: string }> {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
@@ -10,12 +14,13 @@ export function downloadWithProgress(
     request.responseType = 'arraybuffer';
 
     request.onprogress = (event) => {
-      if (!event.lengthComputable || event.total <= 0) {
-        onProgress(null);
-        return;
-      }
+      const total = event.lengthComputable && event.total > 0 ? event.total : null;
 
-      onProgress(Math.min(100, Math.round((event.loaded / event.total) * 100)));
+      onProgress({
+        percent: total ? Math.min(100, Math.round((event.loaded / total) * 100)) : null,
+        loaded: event.loaded,
+        total,
+      });
     };
 
     request.onerror = () => {
@@ -28,9 +33,16 @@ export function downloadWithProgress(
         return;
       }
 
-      onProgress(100);
+      const buffer = request.response as ArrayBuffer;
+
+      onProgress({
+        percent: 100,
+        loaded: buffer.byteLength,
+        total: buffer.byteLength,
+      });
+
       resolve({
-        buffer: request.response as ArrayBuffer,
+        buffer,
         contentType: request.getResponseHeader('content-type') ?? '',
       });
     };

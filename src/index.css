@@ -121,6 +121,10 @@ button:disabled {
   animation: ribbon-slide 5.5s ease-in-out infinite;
 }
 
+.page-loader-spin {
+  animation: page-loader-spin 1.8s linear infinite;
+}
+
 .theme-light [class*='bg-[#08100f]'],
 .theme-light [class*='bg-[#030706]'] {
   background-color: #f8fafc !important;
@@ -260,6 +264,12 @@ button:disabled {
   50% {
     transform: translateX(22px) scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes page-loader-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
