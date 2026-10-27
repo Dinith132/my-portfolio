@@ -23,9 +23,9 @@ export const featuredProjects: FeaturedProject[] = [
       'A Linux desktop terminal that automates shell tasks through IPC-based command execution and Linux system integration.',
     images: [
       {
-        src: assetPath('img/projects/cogniterm.jpg'),
-        alt: 'Preview image for Cogniterm, a Linux desktop terminal assistant',
-        caption: 'Preview image',
+        src: assetPath('img/projects/cogniterm.png'),
+        alt: 'Cogniterm desktop window showing a Linux terminal and system summary',
+        caption: 'Cogniterm desktop',
       },
     ],
     video: assetPath('video/cogniterm.mp4'),

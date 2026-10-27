@@ -2,8 +2,8 @@ import { useGSAP } from '@gsap/react';
 import { motion, useReducedMotion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUpRight, Github } from 'lucide-react';
-import { useRef } from 'react';
+import { ArrowUpRight, Github, Play } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { featuredProjects } from '../data/projects';
 import type { FeaturedProject } from '../types/portfolio';
 import { Reveal } from '../ui/Reveal';
@@ -13,21 +13,79 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 function ProjectVisual({ project }: { project: FeaturedProject }) {
   const shouldReduceMotion = useReducedMotion();
   const image = project.images[0];
+  const visualRef = useRef<HTMLElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const visual = visualRef.current;
+
+    if (!isPlaying || !visual) {
+      return;
+    }
+
+    let hasBeenVisible = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) {
+          return;
+        }
+
+        if (entry.intersectionRatio >= 0.45) {
+          hasBeenVisible = true;
+          return;
+        }
+
+        if (!hasBeenVisible) {
+          return;
+        }
+
+        visual.querySelector('video')?.pause();
+        setIsPlaying(false);
+      },
+      { threshold: [0, 0.45, 1] },
+    );
+
+    observer.observe(visual);
+
+    return () => observer.disconnect();
+  }, [isPlaying]);
+
+  if (project.video && image?.src && isPlaying) {
+    return (
+      <figure ref={visualRef} className="relative min-h-72 overflow-hidden bg-[#111a18]">
+        <video
+          autoPlay
+          controls
+          playsInline
+          poster={image.src}
+          className="h-full min-h-72 w-full bg-[#111a18] object-contain"
+        >
+          <source src={project.video} type="video/mp4" />
+        </video>
+      </figure>
+    );
+  }
 
   if (project.video && image?.src) {
     return (
       <figure className="relative min-h-72 overflow-hidden bg-[#111a18]">
-        <video
-          controls
-          playsInline
-          poster={image.src}
-          preload="metadata"
-          className="h-full min-h-72 w-full bg-[#111a18] object-cover"
+        <img
+          src={image.src}
+          alt={image.alt}
+          className="h-full min-h-72 w-full object-contain"
+        />
+        <button
+          type="button"
+          onClick={() => setIsPlaying(true)}
+          className="absolute inset-0 grid place-items-center bg-[#08100f]/20 transition hover:bg-[#08100f]/35"
+          aria-label={`Play ${project.title} video`}
         >
-          <source src={project.video} type="video/mp4" />
-        </video>
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-[#08100f]/85 text-white">
+            <Play className="ml-1 h-6 w-6" aria-hidden="true" />
+          </span>
+        </button>
         {image.caption && (
-          <figcaption className="absolute left-3 top-3 bg-[#08100f]/85 px-3 py-2 text-xs font-semibold text-slate-200">
+          <figcaption className="pointer-events-none absolute left-3 top-3 bg-[#08100f]/85 px-3 py-2 text-xs font-semibold text-slate-200">
             {image.caption}
           </figcaption>
         )}
