@@ -1,8 +1,9 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useState } from 'react';
 import { ArrowDown, Github, Linkedin, MapPin } from 'lucide-react';
 import { profile, profileLinks } from '../data/profile';
 import type { ThemeMode } from '../types/theme';
-import { BlackHoleScene } from '../ui/BlackHoleScene';
+import { ComputerScene } from '../ui/ComputerScene';
 
 const github = profileLinks.find((link) => link.name === 'github');
 const linkedin = profileLinks.find((link) => link.name === 'linkedin');
@@ -39,6 +40,7 @@ type HeroProps = {
 export function Hero({ theme }: HeroProps) {
   const shouldReduceMotion = useReducedMotion();
   const isLight = theme === 'light';
+  const [sceneReady, setSceneReady] = useState(false);
   const { scrollYProgress } = useScroll();
   const portraitY = useTransform(scrollYProgress, [0, 0.28], [0, -70]);
 
@@ -50,12 +52,12 @@ export function Hero({ theme }: HeroProps) {
       }`}
     >
       <div className="absolute inset-0 -z-10">
-        <BlackHoleScene theme={theme} />
+        <ComputerScene theme={theme} onSettled={() => setSceneReady(true)} />
         <div
           className={`absolute inset-0 ${
             isLight
-              ? 'bg-[linear-gradient(90deg,rgba(248,250,252,0.92)_0%,rgba(248,250,252,0.6)_34%,rgba(248,250,252,0.1)_66%,rgba(248,250,252,0.72)_100%)]'
-              : 'bg-[linear-gradient(90deg,rgba(3,7,6,0.86)_0%,rgba(3,7,6,0.48)_35%,rgba(3,7,6,0.08)_70%,rgba(3,7,6,0.7)_100%)]'
+              ? 'bg-[linear-gradient(90deg,rgba(248,250,252,0.94)_0%,rgba(248,250,252,0.78)_28%,rgba(248,250,252,0.42)_50%,rgba(248,250,252,0.22)_66%,rgba(248,250,252,0.72)_100%)]'
+              : 'bg-[linear-gradient(90deg,rgba(3,7,6,0.9)_0%,rgba(3,7,6,0.7)_28%,rgba(3,7,6,0.34)_50%,rgba(3,7,6,0.16)_66%,rgba(3,7,6,0.62)_100%)]'
           }`}
         />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.07)_1px,transparent_1px)] bg-[size:140px_140px] opacity-50" />
@@ -86,7 +88,7 @@ export function Hero({ theme }: HeroProps) {
           animate={shouldReduceMotion ? undefined : { x: ['-18%', '12%', '-18%'] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           className={`absolute bottom-1/4 left-1/2 h-48 w-[42rem] -translate-x-1/2 blur-3xl ${
-            isLight ? 'bg-amber-300/24' : 'bg-emerald-300/10'
+            isLight ? 'bg-cyan-300/28' : 'bg-cyan-300/16'
           }`}
         />
         <div
@@ -96,6 +98,20 @@ export function Hero({ theme }: HeroProps) {
           }`}
         />
       </div>
+      {!sceneReady && (
+        <p
+          className={`pointer-events-none absolute bottom-20 right-6 z-20 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] sm:right-10 ${
+            isLight ? 'text-slate-800' : 'text-emerald-100'
+          }`}
+        >
+          <span
+            className={`h-2 w-2 rounded-full ${shouldReduceMotion ? '' : 'animate-pulse'} ${
+              isLight ? 'bg-amber-600' : 'bg-emerald-300'
+            }`}
+          />
+          Loading
+        </p>
+      )}
       <div
         className={`pointer-events-none absolute inset-x-0 bottom-0 z-20 overflow-hidden border-y py-3 backdrop-blur ${
           isLight
