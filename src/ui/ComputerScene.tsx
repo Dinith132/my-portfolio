@@ -3,26 +3,10 @@ import { Component, useEffect, useRef } from 'react';
 import type { ReactNode } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { assetPath } from '../data/profile';
+import { loadComputerModel } from '../lib/computerModel';
 import type { ThemeMode } from '../types/theme';
 
 extend(THREE);
-
-const modelUrl = assetPath('models/computer.glb');
-
-let computerModel: Promise<THREE.Group> | null = null;
-
-function loadComputer() {
-  if (!computerModel) {
-    computerModel = new Promise((resolve, reject) => {
-      const loader = new GLTFLoader();
-      loader.load(modelUrl, (gltf) => resolve(gltf.scene), undefined, reject);
-    });
-  }
-
-  return computerModel;
-}
 
 type ComputerSceneProps = {
   theme: ThemeMode;
@@ -42,7 +26,7 @@ function ComputerScreen({ reduced, onReady }: { reduced: boolean; onReady: () =>
     let alive = true;
     let mounted: THREE.Object3D | null = null;
 
-    loadComputer()
+    loadComputerModel()
       .then((source) => {
         if (!alive || !pivot) {
           return;
