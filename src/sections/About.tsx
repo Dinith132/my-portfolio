@@ -1,27 +1,27 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { Cpu, Layers3, Network, Workflow } from 'lucide-react';
+import { Cloud, Database, Layers3, Workflow } from 'lucide-react';
 import { Reveal } from '../ui/Reveal';
 
 const systemNotes = [
   {
-    label: 'Software depth',
-    text: 'Backend applications, asynchronous workflows, APIs, and database-backed systems.',
+    label: 'Full-stack',
+    text: 'React interfaces with NestJS, Node.js, and Spring Boot services behind them.',
     icon: Layers3,
   },
   {
-    label: 'Physical systems',
-    text: 'Microcontrollers, sensors, communication modules, motors, PCB workflows, and control loops.',
-    icon: Cpu,
+    label: 'Backend',
+    text: 'PostgreSQL, Redis, BullMQ, REST APIs, and gRPC contracts.',
+    icon: Database,
   },
   {
-    label: 'Intelligence',
-    text: 'Applied AI, LSTM behaviour analysis, explainability, and model-interpretation workflows.',
-    icon: Network,
-  },
-  {
-    label: 'Automation',
-    text: 'Practical engineering workflows that connect software services with repeatable operations.',
+    label: 'Integrations',
+    text: 'Event-driven messaging, third-party channels, and workflow automation.',
     icon: Workflow,
+  },
+  {
+    label: 'Delivery',
+    text: 'Docker, GitHub Actions, Firebase, and Azure deployments.',
+    icon: Cloud,
   },
 ];
 
@@ -37,27 +37,25 @@ export function About() {
               About
             </p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-              Engineering across code, signals, and hardware.
+              Full-stack software, from the interface to the service.
             </h2>
           </div>
 
           <div className="space-y-6 text-lg leading-8 text-stone-700">
             <p>
-              I am a Computer Engineer interested in building reliable systems
-              across both software and hardware.
+              I am a software engineer focused on full-stack products: React
+              interfaces, NestJS and Node services, and the data and messaging
+              around them.
             </p>
             <p>
-              My work includes backend applications, automation workflows,
-              machine-learning research, and embedded projects using
-              microcontrollers, sensors, communication modules, motors, and
-              control systems.
+              My recent work includes a one-year internship on a live production
+              platform, plus projects in desktop tools, real-time audio and
+              video, and exam systems.
             </p>
             <p>
-              I enjoy understanding how systems work beneath the surface, from
-              application architecture and asynchronous processing to model
-              behaviour and hardware control. My long-term direction is toward
-              embedded software and systems engineering, supported by practical
-              software-development experience.
+              I like shipping features that stay reliable in production, from
+              REST and gRPC services to queues, CI/CD, and third-party
+              integrations.
             </p>
           </div>
         </Reveal>

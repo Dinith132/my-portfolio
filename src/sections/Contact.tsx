@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, MapPin, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, FileText, Phone } from 'lucide-react';
 import { profile, profileLinks } from '../data/profile';
 import { Reveal } from '../ui/Reveal';
 
@@ -6,6 +6,7 @@ const iconMap = {
   github: Github,
   linkedin: Linkedin,
   email: Mail,
+  phone: Phone,
   cv: FileText,
 };
 
@@ -19,11 +20,10 @@ export function Contact() {
               Contact
             </p>
             <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-              Open to systems-minded engineering work.
+              Open to full-stack software work.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-700">
-              Open to opportunities in embedded software, backend engineering,
-              systems development, and automation.
+              Open to full-stack and backend software engineering roles.
             </p>
           </div>
 
@@ -56,12 +56,17 @@ export function Contact() {
                   );
                 }
 
+                const opensInNewTab =
+                  link.href.startsWith('http') || link.href.endsWith('.pdf');
+
                 return (
                   <a
                     key={link.name}
                     href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
+                    {...(opensInNewTab
+                      ? { target: '_blank', rel: 'noreferrer' }
+                      : {})}
+                    {...(link.name === 'cv' ? { download: true } : {})}
                     className="flex items-center gap-3 border border-[#101614]/10 px-4 py-4 text-[#101614] transition hover:border-emerald-700 hover:bg-emerald-50"
                   >
                     {content}

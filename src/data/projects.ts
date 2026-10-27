@@ -1,234 +1,126 @@
 import type { FeaturedProject } from '../types/portfolio';
+import { assetPath } from './profile';
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    id: 'adventure-companion-wearable',
-    title: 'Adventure Companion Wearable',
-    shortTitle: 'Adventure Wearable',
-    category: 'Embedded Systems, PCB Design, Wireless Communication',
+    id: 'cogniterm',
+    title: 'Cogniterm',
+    shortTitle: 'Cogniterm',
+    category: 'Desktop, Electron, Python',
     summary:
-      'An ESP32-based wearable designed for outdoor safety, health monitoring, navigation, communication, and real-time status display.',
+      'A Linux desktop terminal assistant with an Electron front end and a Python backend on AWS EC2.',
     problem:
-      'Outdoor activity can require health awareness, location visibility, alerts, and lightweight communication without relying on a single device.',
+      'Shell tasks are easier to automate when a desktop terminal can run commands through a dedicated backend instead of a manual session.',
     approach:
-      'Combined ESP32 control, GPS positioning, pulse-oximetry sensing, NRF24L01 wireless communication, OLED display output, audio components, haptics, and custom circuit design.',
+      'Built an Electron front end and a Python backend on AWS EC2, using IPC-based command execution and Linux system integration.',
     contribution:
-      'Designed the wearable system concept, circuit integration, PCB workflow, and embedded feature set around sensing, display, notification, and communication modules.',
-    technologies: [
-      'ESP32',
-      'ESP-IDF',
-      'C/C++',
-      'EasyEDA',
-      'Altium Designer',
-      'GPS',
-      'NRF24L01',
-      'I2C',
-      'PCB design',
-    ],
+      'Built the desktop terminal assistant, including the Electron front end, Python backend, and IPC command execution.',
+    technologies: ['Electron', 'Python', 'AWS EC2', 'IPC', 'Linux'],
     challenges: [
-      'Integrating mixed sensor, display, audio, and wireless modules in a compact wearable circuit',
-      'Coordinating power, communication, and user feedback requirements across hardware modules',
+      'Connecting the Electron front end to the Python backend through IPC while executing commands on Linux.',
     ],
     results:
-      'Repository confirms circuit diagrams, schematic/PCB design assets, ESP-IDF usage, and the listed wearable modules. Field-test results to be added when verified.',
+      'A Linux desktop terminal that automates shell tasks through IPC-based command execution and Linux system integration.',
     images: [
       {
-        src: 'https://raw.githubusercontent.com/Dinith132/ALL-IN-ONE-ADVENTURE-COMPANION-WEARABLE/87509a178b6350792eec762ce333d4cd9c8d5785/design/3D%20view.PNG',
-        alt: '3D PCB render for the Adventure Companion Wearable',
-        caption: 'PCB render from the project repository',
+        src: assetPath('img/projects/cogniterm.jpg'),
+        alt: 'Preview image for Cogniterm, a Linux desktop terminal assistant',
+        caption: 'Preview image',
       },
     ],
-    github:
-      'https://github.com/Dinith132/ALL-IN-ONE-ADVENTURE-COMPANION-WEARABLE',
-    status: 'Prototype documentation available',
+    video: assetPath('video/cogniterm.mp4'),
+    github: 'https://github.com/Dinith132/Cogniterm',
+    status: 'Jul – Nov 2025',
     priority: 1,
   },
   {
-    id: 'lstm-xai',
-    title: 'Understanding LSTM Behaviour Using XAI',
-    shortTitle: 'LSTM XAI',
-    category: 'Research, Deep Learning, Explainable AI',
+    id: 'lang-tool-builder',
+    title: 'AI Reasoning Agent with Tool Integration',
+    shortTitle: 'Reasoning Agent',
+    category: 'Python, LangGraph',
     summary:
-      'A research project investigating how LSTM networks use temporal information by analysing internal states, gate activations, and feature attribution across input windows.',
+      'A LangGraph agent that routes multi-step questions to symbolic math, web search, and other tool APIs.',
     problem:
-      'LSTM models can perform well on time-series tasks, but it is difficult to understand what information they remember, forget, or rely on.',
+      'Multi-step questions need different tools, and a failed or unusable tool response should not end the run.',
     approach:
-      'Study hidden and cell states, input/forget/output gates, time-step importance, Integrated Gradients, and normalised time representations across model or dataset variants.',
+      'Routed questions to symbolic math, web search, and other tool APIs, with retry-once and fallback handling when a tool fails or returns unusable data.',
     contribution:
-      'Research design, model-behaviour analysis, XAI visualisation planning, and thesis-oriented interpretation workflow.',
-    technologies: [
-      'Python',
-      'LSTM',
-      'Deep learning',
-      'Explainable AI',
-      'Integrated Gradients',
-      'Time-series analysis',
-      'Jupyter Notebook',
-      'Matplotlib',
-    ],
+      'Built the LangGraph agent and the tool-routing flow, including retry and fallback behaviour.',
+    technologies: ['Python', 'LangGraph'],
     challenges: [
-      'Connecting internal recurrent-state dynamics to human-readable explanations',
-      'Avoiding unsupported conclusions before final thesis results are verified',
+      'Recovering when a tool fails or returns data the agent cannot use.',
     ],
-    results: 'Final result to be added from thesis.',
+    results:
+      'The agent routes multi-step questions to the right tool and falls back after a single retry when that tool fails.',
     images: [
       {
-        src: '',
-        alt: 'Placeholder for LSTM gate activation and time-step importance diagrams',
-        caption: 'Research diagrams to be added',
-        isPlaceholder: true,
+        src: assetPath('img/projects/lang-tool-builder.jpg'),
+        alt: 'Preview image for the LangGraph reasoning agent',
+        caption: 'Preview image',
       },
     ],
-    github: 'https://github.com/Dinith132',
-    status: 'Research details pending verification',
+    github: 'https://github.com/Dinith132/Lang_Tool-Builder',
+    status: 'Jun – Jul 2025',
     priority: 2,
   },
   {
-    id: 'inverted-pendulum',
-    title: 'Inverted Pendulum Control System',
-    shortTitle: 'Pendulum Control',
-    category: 'Control Systems, Embedded Systems, Mechatronics',
+    id: 'music-jam',
+    title: 'WebRTC Music Jam Platform',
+    shortTitle: 'Music Jam',
+    category: 'Node.js, Socket.IO, WebRTC',
     summary:
-      'A real-time inverted-pendulum platform using an ESP32, stepper motor, magnetic encoder, and PID control to measure angular error and drive the mechanism.',
+      'A real-time platform for multi-user audio and video jam sessions.',
     problem:
-      'Balancing a pendulum requires fast sensing, reliable motor control, repeatable data capture, and careful PID tuning.',
+      'A jam session needs rooms that can be created and cleaned up, plus signaling so participants can connect.',
     approach:
-      'Built a sensing and actuation pipeline around encoder feedback, stepper control, serial data logging, and iterative PID tuning support.',
+      'Handled room creation and cleanup on the server, and used Socket.IO signaling between participants.',
     contribution:
-      'Designed and tested the sensing, motor-control, data-logging, and PID-tuning pipeline for an inverted-pendulum platform.',
-    technologies: [
-      'ESP32',
-      'C/C++',
-      'NEMA 17 stepper motor',
-      'DRV8825',
-      'AS5600 encoder',
-      'PID control',
-      'MATLAB',
-      'Python',
-      'Serial data analysis',
-    ],
+      'Built the real-time platform, including server-side rooms and Socket.IO signaling for audio and video sessions.',
+    technologies: ['Node.js', 'Socket.IO', 'WebRTC'],
     challenges: [
-      'Capturing angular feedback at a useful rate for control decisions',
-      'Tuning a real-time control loop without claiming unverified balancing performance',
+      'Keeping room lifecycle and participant signaling aligned for live audio and video.',
     ],
     results:
-      'Balancing result and final test data to be added when verified.',
+      'Participants join multi-user audio and video jam sessions through server-managed rooms and Socket.IO signaling.',
     images: [
       {
-        src: '',
-        alt: 'Placeholder for inverted pendulum hardware and control-loop diagrams',
-        caption: 'Hardware images to be added',
-        isPlaceholder: true,
+        src: assetPath('img/projects/music-jam.jpg'),
+        alt: 'Preview image for the WebRTC music jam platform',
+        caption: 'Preview image',
       },
     ],
-    github: 'https://github.com/Dinith132',
-    status: 'Verification pending',
+    github: 'https://github.com/Dinith132/music-jam-platform',
+    status: 'Mar – Jun 2025',
     priority: 3,
-  },
-  {
-    id: 'audiomuse-ai',
-    title: 'AudioMuse AI',
-    shortTitle: 'AudioMuse AI',
-    category: 'AI Audio Understanding, Model Training, Audio Processing',
-    summary:
-      'An experimental AI audio system involving CLAP-based audio representation learning, dataset preparation, training optimisation, caching, duplicate handling, and audio preprocessing.',
-    problem:
-      'Audio intelligence systems need reliable representations, clean datasets, and repeatable preprocessing before useful search or recommendation behaviour can be trusted.',
-    approach:
-      'Explored audio representation workflows, preprocessing, caching, duplicate handling, and model-oriented training optimisation.',
-    contribution:
-      'Contribution details need repository-specific confirmation before stronger claims are published.',
-    technologies: [
-      'Python',
-      'CLAP',
-      'Audio preprocessing',
-      'Dataset preparation',
-      'Caching',
-      'Duplicate handling',
-    ],
-    challenges: [
-      'Keeping audio data preparation repeatable',
-      'Separating verified contribution details from broader upstream project behaviour',
-    ],
-    results: 'Project outcomes to be added after repository verification.',
-    images: [
-      {
-        src: '',
-        alt: 'Placeholder for audio representation and clustering visuals',
-        caption: 'Audio system visuals to be added',
-        isPlaceholder: true,
-      },
-    ],
-    github: 'https://github.com/Dinith132/AudioMuse-AI',
-    status: 'Repository details partially verified',
-    priority: 4,
-  },
-  {
-    id: 'sams',
-    title: 'Student Attendance Management System',
-    shortTitle: 'SAMS',
-    category: 'Full-Stack Development, Database Design',
-    summary:
-      'A role-based university attendance-management system supporting course administration, student approval, lecturer scheduling, attendance recording, and student reports.',
-    problem:
-      'Attendance workflows need structured roles, course data, lecturer assignments, and per-course reporting to stay manageable.',
-    approach:
-      'Built around administrator, lecturer, and student workflows with relational data, scheduling, attendance recording, reports, and AJAX-based interactions.',
-    contribution:
-      'Developed full-stack attendance-management workflows and database-backed interactions based on the project brief.',
-    technologies: [
-      'PHP',
-      'MySQL or MariaDB',
-      'JavaScript',
-      'AJAX',
-      'jQuery',
-      'HTML',
-      'CSS',
-      'XAMPP',
-    ],
-    challenges: [
-      'Coordinating multiple role-specific workflows',
-      'Keeping attendance records and course relationships consistent',
-    ],
-    results: 'Repository README details to be confirmed.',
-    images: [
-      {
-        src: '',
-        alt: 'Placeholder for attendance-management interface screenshots',
-        caption: 'Screenshots to be added',
-        isPlaceholder: true,
-      },
-    ],
-    github: 'https://github.com/Dinith132/SAMS',
-    status: 'Repository link available',
-    priority: 5,
   },
   {
     id: 'automated-examination-system',
     title: 'Automated Examination System',
     shortTitle: 'Exam System',
-    category: 'Full-Stack Application',
+    category: 'Full-Stack, Spring Boot, PostgreSQL',
     summary:
-      'A full-stack examination-related application. Final feature description is intentionally limited until the repository can be inspected.',
+      'A full-stack exam platform with authentication, role-based access, a normalized PostgreSQL schema, and REST APIs.',
     problem:
-      'Educational assessment software needs clear verified workflows before publishing claims about grading, scheduling, roles, or results.',
+      'An exam platform needs authenticated roles for administrators, lecturers, and students, with consistent stored data behind the API.',
     approach:
-      'Project architecture and final capabilities to be described after repository inspection.',
+      'Built authentication and role-based access for administrators, lecturers, and students on a normalized PostgreSQL schema with REST APIs.',
     contribution:
-      'Contribution details to be added after repository verification.',
-    technologies: ['Technology stack to be verified'],
-    challenges: ['Project constraints to be added after verification'],
-    results: 'Results to be added after repository verification.',
+      'Built the full-stack exam platform, including authentication, role-based access, the database schema, and the REST API.',
+    technologies: ['Spring Boot', 'PostgreSQL', 'REST APIs'],
+    challenges: [
+      'Keeping administrator, lecturer, and student access consistent with a normalized schema.',
+    ],
+    results:
+      'Administrators, lecturers, and students use authenticated roles against a normalized PostgreSQL schema and REST APIs.',
     images: [
       {
-        src: '',
-        alt: 'Placeholder for automated examination system screenshots',
-        caption: 'Screenshots to be added',
-        isPlaceholder: true,
+        src: assetPath('img/projects/exam-system.jpg'),
+        alt: 'Preview image for the automated examination system',
+        caption: 'Preview image',
       },
     ],
     github: 'https://github.com/Dinith132/Automated-Examination-System',
-    status: 'Repository link available',
-    priority: 6,
+    status: 'Jan – Jun 2025',
+    priority: 4,
   },
 ].sort((a, b) => a.priority - b.priority);

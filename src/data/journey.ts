@@ -3,44 +3,30 @@ import type { JourneyItem } from '../types/portfolio';
 export const journey: JourneyItem[] = [
   {
     id: 'computer-engineering',
-    title: 'Computer Engineering education',
+    title: 'Computer engineering degree',
     description:
-      'Building the base across software, electronics, systems, and engineering problem solving.',
-    status: 'Dates to be confirmed',
+      'BSc. Engineering (Hons.) in Computer Engineering at the University of Jaffna.',
+    status: '2022 – 2026',
   },
   {
-    id: 'software-internship',
+    id: 'fullstack-projects',
+    title: 'Full-stack and backend projects',
+    description:
+      'Exam platform, real-time music jam sessions, a LangGraph tool agent, and the Cogniterm desktop terminal.',
+    status: 'Jan – Nov 2025',
+  },
+  {
+    id: 'kingteza-internship',
     title: 'Software engineering internship',
     description:
-      'Backend and software development exposure through internship work at Kingteza.',
-    status: 'Experience details pending confirmation',
+      'Full-stack work at Kingteza Software Solutions on a live hotel platform: NestJS services, messaging, gRPC, and cloud CI/CD.',
+    status: 'Nov 2025 – Oct 2026',
   },
   {
-    id: 'backend-automation',
-    title: 'Backend and automation experience',
+    id: 'software-direction',
+    title: 'Software engineering and full-stack development',
     description:
-      'Practical work around services, queues, APIs, debugging, and repeatable development workflows.',
-    status: 'Technology details pending confirmation',
-  },
-  {
-    id: 'ai-xai-research',
-    title: 'AI and XAI research',
-    description:
-      'Investigating how recurrent models use temporal information through explainability methods.',
-    status: 'Thesis results to be added',
-  },
-  {
-    id: 'embedded-control',
-    title: 'Embedded and control-system projects',
-    description:
-      'Wearable electronics, sensing pipelines, communication modules, motor control, and PID-oriented experimentation.',
-    status: 'Project evidence being collected',
-  },
-  {
-    id: 'systems-direction',
-    title: 'Moving toward embedded software and systems engineering',
-    description:
-      'A direction focused on connecting reliable software with intelligent and physical systems.',
-    status: 'Current professional direction',
+      'Building production software across React interfaces, backend services, and the workflows that connect them.',
+    status: 'Current direction',
   },
 ];

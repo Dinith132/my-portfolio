@@ -11,7 +11,7 @@ export function Experience() {
             Experience
           </p>
           <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            Practical software work, grounded by computer engineering study.
+            A year of full-stack work on a live production platform.
           </h2>
         </Reveal>
 
@@ -48,7 +48,7 @@ export function Experience() {
                 </div>
                 <div>
                   <h4 className="text-xs font-black uppercase tracking-[0.18em] text-sky-200">
-                    Potential technologies
+                    Technologies
                   </h4>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {item.technologies.map((technology) => (
@@ -63,9 +63,11 @@ export function Experience() {
                 </div>
               </div>
 
-              <p className="mt-7 border-t border-white/10 pt-5 text-sm text-slate-400">
-                {item.verificationNote}
-              </p>
+              {item.verificationNote && (
+                <p className="mt-7 border-t border-white/10 pt-5 text-sm text-slate-400">
+                  {item.verificationNote}
+                </p>
+              )}
             </Reveal>
           ))}
 

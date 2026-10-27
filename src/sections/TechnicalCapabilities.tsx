@@ -1,8 +1,8 @@
-import { Cpu, Database, FlaskConical, PenTool, Wrench } from 'lucide-react';
+import { Bot, Cloud, Code2, Database, Network } from 'lucide-react';
 import { skillGroups } from '../data/skills';
 import { Reveal } from '../ui/Reveal';
 
-const icons = [Cpu, Database, FlaskConical, Wrench, PenTool];
+const icons = [Code2, Database, Network, Cloud, Bot];
 
 export function TechnicalCapabilities() {
   return (
@@ -18,15 +18,14 @@ export function TechnicalCapabilities() {
             </h2>
           </div>
           <p className="max-w-2xl text-lg leading-8 text-stone-700">
-            Each group is labelled by confidence level so the page shows where
-            the work is strongest and where skills come from academic or project
-            exposure.
+            Each group is labelled by how strongly it shows up in production
+            work and project work.
           </p>
         </Reveal>
 
         <div className="mt-14 grid gap-4 lg:grid-cols-5">
           {skillGroups.map((group, index) => {
-            const Icon = icons[index] ?? Cpu;
+            const Icon = icons[index] ?? Code2;
 
             return (
               <Reveal

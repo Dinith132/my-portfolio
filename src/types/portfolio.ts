@@ -1,4 +1,4 @@
-export type LinkName = 'github' | 'linkedin' | 'email' | 'cv';
+export type LinkName = 'github' | 'linkedin' | 'email' | 'phone' | 'cv';
 
 export interface ProfileLink {
   name: LinkName;
@@ -15,7 +15,7 @@ export interface ProjectImage {
   caption?: string;
   isPlaceholder?: boolean;
 }
-// 
+
 export interface FeaturedProject {
   id: string;
   title: string;
@@ -29,24 +29,11 @@ export interface FeaturedProject {
   challenges: string[];
   results: string;
   images: ProjectImage[];
+  video?: string;
   github: string;
   live?: string;
   status: string;
   priority: number;
-}
-
-export interface ResearchProfile {
-  title: string;
-  status: string;
-  researchQuestion: string;
-  motivation: string;
-  methodology: string[];
-  modelArchitecture: string[];
-  xaiTechniques: string[];
-  visualResults: string[];
-  thesisLink: string;
-  teamMembers: string[];
-  supervisor: string;
 }
 
 export interface ExperienceItem {
@@ -58,7 +45,7 @@ export interface ExperienceItem {
   summary: string;
   workAreas: string[];
   technologies: string[];
-  verificationNote: string;
+  verificationNote?: string;
 }
 
 export type SkillLevel =

@@ -9,7 +9,6 @@ import { Experience } from './sections/Experience';
 import { FeaturedProjects } from './sections/FeaturedProjects';
 import { Hero } from './sections/Hero';
 import { Journey } from './sections/Journey';
-import { Research } from './sections/Research';
 import { TechnicalCapabilities } from './sections/TechnicalCapabilities';
 import type { ThemeMode } from './types/theme';
 
@@ -46,7 +45,6 @@ function App() {
         <Hero theme={theme} />
         <About />
         <FeaturedProjects />
-        <Research />
         <Experience />
         <TechnicalCapabilities />
         <Journey />

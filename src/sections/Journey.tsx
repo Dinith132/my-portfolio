@@ -11,7 +11,7 @@ export function Journey() {
             Engineering journey
           </p>
           <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            The direction is systems: software that can reason, communicate, and control.
+            From a computer engineering degree to full-stack software.
           </h2>
         </Reveal>
 

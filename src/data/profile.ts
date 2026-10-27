@@ -1,6 +1,6 @@
 import type { ProfileLink } from '../types/portfolio';
 
-const assetPath = (path: string) => {
+export const assetPath = (path: string) => {
   const base = import.meta.env.BASE_URL.endsWith('/')
     ? import.meta.env.BASE_URL
     : `${import.meta.env.BASE_URL}/`;
@@ -10,13 +10,12 @@ const assetPath = (path: string) => {
 
 export const profile = {
   name: 'Dinith Priyankara',
-  role: 'Computer Engineer',
-  location: 'Sri Lanka',
-  headline:
-    'I build software that connects intelligence, systems, and the physical world.',
+  role: 'Software Engineer',
+  location: 'Badulla, Sri Lanka',
+  headline: 'I build full-stack software for real products.',
   summary:
-    'Computer Engineer with experience in backend development, embedded systems, automation, control systems, and applied AI.',
-  focusAreas: ['Embedded Systems', 'Backend Engineering', 'Explainable AI'],
+    'Software engineer and full-stack developer with a one-year internship on a live production platform: React, NestJS, event-driven services, and cloud CI/CD.',
+  focusAreas: ['Full-Stack Development', 'Backend Engineering', 'Cloud and Automation'],
   image: {
     src: assetPath('img/profile.jpg'),
     alt: 'Portrait of Dinith Priyankara',
@@ -39,17 +38,19 @@ export const profileLinks: ProfileLink[] = [
   {
     name: 'email',
     label: 'Email',
-    href: '#email-to-be-confirmed',
-    value: 'Preferred email to be confirmed',
-    isPlaceholder: true,
-    isDisabled: true,
+    href: 'mailto:dinithp132@gmail.com',
+    value: 'dinithp132@gmail.com',
+  },
+  {
+    name: 'phone',
+    label: 'Phone',
+    href: 'tel:+94769006586',
+    value: '+94 76 900 6586',
   },
   {
     name: 'cv',
     label: 'CV',
-    href: '#cv-to-be-confirmed',
-    value: 'CV file to be confirmed',
-    isPlaceholder: true,
-    isDisabled: true,
+    href: assetPath('Dinith-Priyankara-CV.pdf'),
+    value: 'Download CV',
   },
 ];

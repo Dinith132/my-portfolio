@@ -7,16 +7,15 @@ import { BlackHoleScene } from '../ui/BlackHoleScene';
 const github = profileLinks.find((link) => link.name === 'github');
 const linkedin = profileLinks.find((link) => link.name === 'linkedin');
 const email = profileLinks.find((link) => link.name === 'email');
+const phone = profileLinks.find((link) => link.name === 'phone');
 const cv = profileLinks.find((link) => link.name === 'cv');
 
 const headingLines = [
   'I build',
-  'software that',
-  'connects',
-  'intelligence,',
-  'systems, and',
-  'the physical',
-  'world.',
+  'full-stack',
+  'software',
+  'for real',
+  'products.',
 ];
 
 const lineVariants = {
@@ -25,12 +24,12 @@ const lineVariants = {
 };
 
 const tickerItems = [
-  'Embedded Systems',
+  'Full-Stack',
+  'NestJS',
+  'React',
   'Backend APIs',
-  'AI Workflows',
+  'Cloud',
   'Automation',
-  'Control Systems',
-  'Robotics',
 ];
 
 type HeroProps = {
@@ -333,8 +332,8 @@ export function Hero({ theme }: HeroProps) {
                 {profile.location}
               </div>
               <p className={`mt-2 text-sm ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
-                Open to embedded software, backend engineering, systems
-                development, and automation opportunities.
+                Open to full-stack and backend software engineering
+                opportunities.
               </p>
             </div>
             <div
@@ -381,13 +380,31 @@ export function Hero({ theme }: HeroProps) {
             <div className="flex items-start justify-between gap-4">
               <dt className={isLight ? 'text-slate-500' : 'text-slate-500'}>Email</dt>
               <dd className={`text-right ${isLight ? 'text-slate-800' : 'text-slate-200'}`}>
-                {email?.value}
+                {email && (
+                  <a href={email.href} className="break-all hover:underline">
+                    {email.value}
+                  </a>
+                )}
+              </dd>
+            </div>
+            <div className="flex items-start justify-between gap-4">
+              <dt className={isLight ? 'text-slate-500' : 'text-slate-500'}>Phone</dt>
+              <dd className={`text-right ${isLight ? 'text-slate-800' : 'text-slate-200'}`}>
+                {phone && (
+                  <a href={phone.href} className="hover:underline">
+                    {phone.value}
+                  </a>
+                )}
               </dd>
             </div>
             <div className="flex items-start justify-between gap-4">
               <dt className={isLight ? 'text-slate-500' : 'text-slate-500'}>CV</dt>
               <dd className={`text-right ${isLight ? 'text-amber-700' : 'text-amber-200'}`}>
-                {cv?.value}
+                {cv && (
+                  <a href={cv.href} download className="hover:underline">
+                    {cv.value}
+                  </a>
+                )}
               </dd>
             </div>
           </motion.dl>

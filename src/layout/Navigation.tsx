@@ -6,7 +6,6 @@ import type { ThemeMode } from '../types/theme';
 const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Work', href: '#work' },
-  { label: 'Research', href: '#research' },
   { label: 'Experience', href: '#experience' },
   { label: 'Skills', href: '#skills' },
   { label: 'Journey', href: '#journey' },

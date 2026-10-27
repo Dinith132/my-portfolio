@@ -14,6 +14,27 @@ function ProjectVisual({ project }: { project: FeaturedProject }) {
   const shouldReduceMotion = useReducedMotion();
   const image = project.images[0];
 
+  if (project.video && image?.src) {
+    return (
+      <figure className="relative min-h-72 overflow-hidden bg-[#111a18]">
+        <video
+          controls
+          playsInline
+          poster={image.src}
+          preload="metadata"
+          className="h-full min-h-72 w-full bg-[#111a18] object-cover"
+        >
+          <source src={project.video} type="video/mp4" />
+        </video>
+        {image.caption && (
+          <figcaption className="absolute left-3 top-3 bg-[#08100f]/85 px-3 py-2 text-xs font-semibold text-slate-200">
+            {image.caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
   if (image && !image.isPlaceholder && image.src) {
     return (
       <figure className="relative min-h-72 overflow-hidden bg-[#111a18]">
@@ -331,13 +352,11 @@ export function FeaturedProjects() {
             Featured work
           </p>
           <h2 className="mt-4 text-4xl font-black leading-tight sm:text-6xl">
-            Project stories from embedded systems, AI, control, and backend
-            software.
+            Full-stack and backend projects with public repositories.
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            The homepage is limited to six projects. Missing repository details,
-            final research results, screenshots, and live demos are marked
-            plainly instead of filled with guesses.
+            Desktop tools, real-time sessions, agents, and an exam platform.
+            Each card links to its GitHub repository.
           </p>
         </Reveal>
       </div>
