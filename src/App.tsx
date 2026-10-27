@@ -23,7 +23,7 @@ function App() {
 
     const savedTheme = window.localStorage.getItem('portfolio-theme');
 
-    return savedTheme === 'dark' ? 'dark' : 'light';
+    return savedTheme === 'light' ? 'light' : 'dark';
   });
 
   useGsapSectionTransitions(pageRef);
