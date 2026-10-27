@@ -13,7 +13,7 @@ export const skillGroups: SkillGroup[] = [
       'React',
       'Java',
       'Spring Boot',
-      'Python', 
+      'Python',
     ],
   },
   {
